@@ -1,0 +1,26 @@
+<h1>{{cityname}}</h1>
+<ul>
+{{#each forcasts}}
+<li>
+    <h2>{{@key}} {{this.feeling}}</h2>
+    <ul>
+        {{#each this}}
+        <li> <em>{{this.time}}</em>  {{this.weather}}  {{this.temp_max}}</li>
+        {{/each}}
+    </ul>
+    <form action="/feeling">
+        <label for="feeling">How does this make you feel?</label>
+        <select name="feeling" id="feeling">
+            <option value="happy">happy</option>
+            <option value="neutral">neutral</option>
+            <option value="sad">sad</option>
+            <option value="other">other</option>
+        </select>
+        <input type="hidden" name="time" value="{{@key}}">
+        <input type="hidden" name="city" value="{{../cityname}}">
+        <button type="submit">Submit</button>
+    
+    </form>
+</li>
+{{/each}}
+</ul>
